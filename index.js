@@ -16,25 +16,6 @@ app.post('/gestures',function(request,response){
   console.log('New gesture' + request.body.action);
   response.json({success: true, actionReceived: request.body.action});
 });
-
-// app.post('/shouldibesilent', function(request, response) {
-//   console.log('That phone wants to know if it should be silent...', request);
-//   response.json({callSound: call.sound});
-// });
-
-// app.post('/call', function(request, response) {
-//   console.log('Something is setting the call to ' + request.body.action);
-
-//   switch (request.body.action) {
-//     case 'mute':
-//       call.sound = false;
-//     break;
-//     case 'reset':
-//       call.sound = true;
-//     break;
-//   }
-//   response.json({success: true, actionReceived: request.body.action});
-// });
  
 app.get(/^(.+)$/, function(req, res) {
   res.sendfile('public/' + req.params[0]);
