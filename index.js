@@ -15,11 +15,19 @@ app.get(/^(.+)$/, function(req, res) {
   res.sendfile('public/' + req.params[0]);
 });
 
+var user = {
+	liveConnected : 0
+};
+
 io.on('connection', function(socket){
   console.log('a user connected');
-  io.emit('UserCnnection');
+  	user.liveConnected++;
+  	console.log("userConnected",user.liveConnected)
+  	io.emit('UserConnection',user);
   socket.on('disconnect', function(){
-  	io.emit('UserDisonnection');
+  	user.liveConnected--;
+  	console.log("userDisconnected",user.liveConnected)
+  	io.emit('UserDisonnection',user);
   });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);

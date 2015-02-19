@@ -24,18 +24,14 @@ function mouselistener(){
 
 function testServer(){
   socket.on('HandPosition', function(data){
-    $("#main").find("ul").append("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
+    $("#main").find("ul").html("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
   });
-  socket.on('UserConnection', function(){
-    console.log("UserConnection")
-    var numUser = parseInt($("#main").find("div").find("span").html());
-    numUser++;
-    $("#main").find("div").find("span").html(numUser);
+  socket.on('UserConnection', function(data){
+    console.log("UserConnection",data)
+    $("#main").find("div").find("span").html(data.liveConnected);
   });
-  socket.on('UserDisonnection', function(){
-    console.log("UserDisonnection")
-    var numUser = parseInt($("#main").find("div").find("span").html());
-    numUser--;
-    $("#main").find("div").find("span").html(numUser);
+  socket.on('UserDisonnection', function(data){
+    console.log("UserDisonnection",data)
+    $("#main").find("div").find("span").html(data.liveConnected);
   });
 };
