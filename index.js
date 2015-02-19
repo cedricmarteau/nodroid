@@ -17,6 +17,10 @@ app.get(/^(.+)$/, function(req, res) {
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  io.emit('UserCnnection');
+  socket.on('disconnect', function(){
+  	io.emit('UserDisonnection');
+  });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);
     io.emit('HandPosition', data);

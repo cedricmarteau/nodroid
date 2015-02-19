@@ -24,6 +24,16 @@ function mouselistener(){
 
 function testServer(){
   socket.on('HandPosition', function(data){
-    $("#main").find("ul").html("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
+    $("#main").find("ul").append("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
+  });
+  socket.on('UserConnection', function(){
+    var numUser = $("#main").find("div").find("span").html();
+    numUser++;
+    $("#main").find("div").find("span").html(numUser);
+  });
+  socket.on('UserDisonnection', function(){
+    var numUser = $("#main").find("div").find("span").html();
+    numUser--;
+    $("#main").find("div").find("span").html(numUser);
   });
 };
