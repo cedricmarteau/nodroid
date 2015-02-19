@@ -27,12 +27,14 @@ function testServer(){
     $("#main").find("ul").append("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
   });
   socket.on('UserConnection', function(){
-    var numUser = $("#main").find("div").find("span").html();
+    console.log("UserConnection")
+    var numUser = parseInt($("#main").find("div").find("span").html());
     numUser++;
     $("#main").find("div").find("span").html(numUser);
   });
   socket.on('UserDisonnection', function(){
-    var numUser = $("#main").find("div").find("span").html();
+    console.log("UserDisonnection")
+    var numUser = parseInt($("#main").find("div").find("span").html());
     numUser--;
     $("#main").find("div").find("span").html(numUser);
   });
