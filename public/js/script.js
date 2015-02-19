@@ -28,10 +28,13 @@ function testServer(){
   });
   socket.on('UserConnection', function(data){
     console.log("UserConnection",data)
-    $("#main").find("div").find("span").html(data.liveConnected);
+    $("#userconnected").find("span").html(data.liveConnected);
   });
   socket.on('UserDisonnection', function(data){
     console.log("UserDisonnection",data)
-    $("#main").find("div").find("span").html(data.liveConnected);
+    $("#userconnected").find("span").html(data.liveConnected);
+  });
+  socket.on("hello",function(){
+    $("#main").append("<div>Hello from Android</div>")
   });
 };
