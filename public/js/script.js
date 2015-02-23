@@ -4,7 +4,7 @@ var obj = {
     y:0,
     z:0
   },
-  socket = io();
+  socket = io.connect('http://localhost');
 
 mouselistener();
 updateIndexFingerServer();

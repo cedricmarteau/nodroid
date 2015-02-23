@@ -1,9 +1,9 @@
 var express = require('express');
 var http = require('http');
 var app = express();
-var server = server = require('http').createServer(app);
+var server = require('http').createServer(app);
 var port = process.env.PORT || 5000;
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server);
 
 app.use(express.bodyParser());
 
@@ -19,19 +19,19 @@ var user = {
 	liveConnected : 0
 };
 
-io.on('connection', function(socket){
+io.sockets.on('connection', function(socket){
   console.log('a user connected');
   	user.liveConnected++;
   	console.log("userConnected",user.liveConnected)
-  	io.emit('UserConnection',user);
+  	socket.emit('UserConnection',user);
   socket.on('disconnect', function(){
   	user.liveConnected--;
   	console.log("userDisconnected",user.liveConnected)
-  	io.emit('UserDisonnection',user);
+  	socket.emit('UserDisonnection',user);
   });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);
-    io.emit('HandPosition', data);
+    socket.emit('HandPosition', data);
   });
 });
 
