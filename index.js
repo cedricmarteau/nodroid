@@ -31,7 +31,7 @@ io.sockets.on('connection', function(socket){
   });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);
-    socket.emit('HandPosition', data);
+    socket.emit('HandPosition', JSON.stringify(data));
   });
 });
 
