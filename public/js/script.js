@@ -24,6 +24,7 @@ function mouselistener(){
 
 function testServer(){
   socket.on('HandPosition', function(data){
+    console.log(data)
     $("#main").find("ul").html("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
   });
   socket.on('UserConnection', function(data){
