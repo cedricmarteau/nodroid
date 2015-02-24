@@ -25,12 +25,14 @@ function testServer(){
     $("#main").find("ul").html("<li>x : "+parsedData.x+"</li><li>y : "+parsedData.y+"</li><li>z : "+parsedData.z+"</li>")
   });
   socket.on('UserConnection', function(data){
+    var parsedData = $.parseJSON(data);
     console.log("UserConnection",data)
-    $("#userconnected").find("span").html(data.liveConnected);
+    $("#userconnected").find("span").html(parsedData.liveConnected);
   });
   socket.on('UserDisonnection', function(data){
+    var parsedData = $.parseJSON(data);
     console.log("UserDisonnection",data)
-    $("#userconnected").find("span").html(data.liveConnected);
+    $("#userconnected").find("span").html(parsedData.liveConnected);
   });
   socket.on("hello",function(){
     $("#main").append("<div>Hello from Android</div>")

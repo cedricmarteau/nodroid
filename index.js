@@ -23,11 +23,11 @@ io.sockets.on('connection', function(socket){
   console.log('a user connected');
   	user.liveConnected++;
   	console.log("userConnected",user.liveConnected)
-  	socket.emit('UserConnection',user);
+  	socket.emit('UserConnection',JSON.stringify(user));
   socket.on('disconnect', function(){
   	user.liveConnected--;
   	console.log("userDisconnected",user.liveConnected)
-  	socket.emit('UserDisonnection',user);
+  	socket.emit('UserDisonnection',JSON.stringify(user));
   });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);
