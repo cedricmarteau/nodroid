@@ -4,8 +4,8 @@ var obj = {
     y:0,
     z:0
   },
-  // socket = io.connect('http://arhockey.herokuapp.com');
-  socket = io.connect('http://localhost');
+  socket = io.connect('http://arhockey.herokuapp.com');
+  // socket = io.connect('http://localhost');
 
 mouselistener();
 testServer();
