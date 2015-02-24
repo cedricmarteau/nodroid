@@ -4,7 +4,8 @@ var obj = {
     y:0,
     z:0
   },
-  socket = io.connect('http://arhockey.herokuapp.com');
+  // socket = io.connect('http://arhockey.herokuapp.com');
+  socket = io.connect('http://localhost');
 
 mouselistener();
 testServer();
@@ -19,9 +20,9 @@ function mouselistener(){
 
 function testServer(){
   socket.on('HandPosition', function(data){
-    var data = $.parseJSON('data');
-    console.log(data)
-    $("#main").find("ul").html("<li>x : "+data.x+"</li><li>y : "+data.y+"</li><li>z : "+data.z+"</li>")
+    var parsedData = $.parseJSON(data);
+    console.log(data,parsedData)
+    $("#main").find("ul").html("<li>x : "+parsedData.x+"</li><li>y : "+parsedData.y+"</li><li>z : "+parsedData.z+"</li>")
   });
   socket.on('UserConnection', function(data){
     console.log("UserConnection",data)
