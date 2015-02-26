@@ -23,15 +23,15 @@ io.sockets.on('connection', function(socket){
   console.log('a user connected');
   	user.liveConnected++;
   	console.log("userConnected",user.liveConnected)
-  	socket.emit('UserConnection',JSON.stringify(user));
+  	io.sockets.emit('UserConnection',JSON.stringify(user));
   socket.on('disconnect', function(){
   	user.liveConnected--;
   	console.log("userDisconnected",user.liveConnected)
-  	socket.emit('UserDisonnection',JSON.stringify(user));
+  	io.sockets.emit('UserDisonnection',JSON.stringify(user));
   });
   socket.on('HandPosition', function(data){
     console.log('HandPosition: ' + data);
-    socket.emit('HandPosition', JSON.stringify(data));
+    io.sockets.emit('HandPosition', JSON.stringify(data));
   });
 });
 
